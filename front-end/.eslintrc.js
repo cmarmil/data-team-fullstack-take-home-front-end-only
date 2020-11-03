@@ -1,0 +1,35 @@
+module.exports = {
+    parser: 'babel-eslint',
+    env: {
+        browser: true,
+        es6: true,
+        jest: true,
+        node: true,
+    },
+    extends: ['airbnb'],
+    rules: {
+        'comma-dangle': ['error', {
+            arrays: 'always-multiline',
+            objects: 'always-multiline',
+            imports: 'always-multiline',
+            exports: 'always-multiline',
+            functions: 'never'
+        }],
+        'import/no-extraneous-dependencies': 0,
+        'import/no-named-as-default': 0,
+        'import/prefer-default-export': 0,
+        'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
+        'max-len': ['error', { code: 120, ignoreComments: true }],
+        'no-else-return': ['error', { allowElseIf: true }],
+        'react/jsx-curly-newline': ['error', { multiline: 'consistent', singleline: 'consistent' }],
+        'react/jsx-filename-extension': 0,
+        'react/jsx-indent-props': ['error', 4],
+        'react/jsx-indent': ['error', 4],
+        'react/jsx-props-no-spreading': 0,
+        'react/no-did-update-set-state': 0,
+        'react/no-unused-prop-types': 0,
+        'react/prop-types': ['error'],
+        'react/require-default-props': ['error'],
+        indent: ['error', 4, { SwitchCase: 1 }],
+    },
+};

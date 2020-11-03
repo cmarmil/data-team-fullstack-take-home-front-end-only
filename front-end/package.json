@@ -1,0 +1,52 @@
+{
+    "name": "front-end",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "webpack --config build-utils/webpack.config.js --env.env=prod",
+        "lint-js": "eslint ./src",
+        "lint-scss": "stylelint \"./src/**/*.{css,scss,sass}\"",
+        "lint": "yarn lint-js && yarn lint-scss",
+        "start": "webpack-dev-server --config build-utils/webpack.config.js --env.env=dev"
+    },
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.6.4",
+        "@babel/plugin-proposal-class-properties": "^7.7.4",
+        "@babel/preset-env": "^7.6.3",
+        "@babel/preset-react": "^7.6.3",
+        "@types/react": "^16.9.11",
+        "babel-eslint": "^10.0.3",
+        "babel-loader": "^8.0.6",
+        "clean-webpack-plugin": "^3.0.0",
+        "css-loader": "^3.2.0",
+        "dotenv-webpack": "^1.7.0",
+        "eslint": "^6.5.1",
+        "eslint-config-airbnb": "^18.0.1",
+        "eslint-loader": "^3.0.2",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-react": "^7.16.0",
+        "eslint-plugin-react-hooks": "^1.7.0",
+        "file-loader": "^6.1.0",
+        "html-webpack-plugin": "^3.2.0",
+        "react-hot-loader": "^4.12.15",
+        "resolve-url-loader": "^3.1.1",
+        "sass": "^1.26.10",
+        "sass-loader": "^8.0.0",
+        "style-loader": "^1.0.0",
+        "stylelint": "^13.6.1",
+        "stylelint-config-standard": "^20.0.0",
+        "stylelint-webpack-plugin": "^2.1.0",
+        "url-loader": "^4.1.0",
+        "webpack": "^4.41.2",
+        "webpack-cli": "^3.3.9",
+        "webpack-dev-server": "^3.8.2",
+        "webpack-merge": "^4.2.2"
+    },
+    "dependencies": {
+        "@material-ui/core": "^4.11.0",
+        "prop-types": "^15.7.2",
+        "react": "^16.10.2",
+        "react-dom": "^16.10.2"
+    }
+}

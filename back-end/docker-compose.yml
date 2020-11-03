@@ -1,0 +1,25 @@
+version: '2'
+services:
+  nginx:
+    build:
+      context: ./nginx
+    links:
+      - app
+    ports:
+      - 3000:80
+  app:
+    build:
+      context: ./app
+    depends_on:
+      - database
+    volumes:
+      - ./app:/usr/src/app
+    env_file:
+      - ./local.env
+  database:
+    build:
+      context: ./database
+    ports:
+      - 3306:3306
+    env_file:
+      - ./local.env

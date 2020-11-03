@@ -3,12 +3,32 @@ import ReactDOM from 'react-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import App from './components/App';
 import './index.scss';
-import { EDEN } from './constants/colors';
+import * as colors from './constants/colors';
 
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: EDEN,
+            main: colors.EDEN,
+        },
+    },
+    overrides: {
+        MuiSelect: {
+            select: {
+                color: colors.WHITE,
+            },
+            icon: {
+                color: colors.WHITE,
+            },
+        },
+        MuiInput: {
+            underline: {
+                '&:before': {
+                    borderBottomColor: colors.WHITE,
+                },
+                '&:after': {
+                    borderBottomColor: colors.WHITE,
+                },
+            },
         },
     },
 });

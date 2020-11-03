@@ -3,8 +3,16 @@ import ReactDOM from 'react-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import App from './components/App';
 import './index.scss';
+import { EDEN } from './constants/colors';
 
-const theme = createMuiTheme();
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: EDEN,
+        },
+    },
+});
+
 
 const renderApp = () => {
     ReactDOM.render(

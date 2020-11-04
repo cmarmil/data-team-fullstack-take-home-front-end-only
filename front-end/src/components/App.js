@@ -2,6 +2,7 @@ import React from 'react';
 import WineSelect from './WineSelect';
 import WineDetailsCard from './WineDetailsCard';
 import Ratings from './Ratings';
+import NewReview from './NewReview';
 import PleaseSelectMessage from './PleaseSelectMessage';
 import styles from './App.scss';
 
@@ -30,6 +31,7 @@ const App = () => {
                         <>
                             <WineDetailsCard wineId={state.currentWineId} />
                             <Ratings wineId={state.currentWineId} />
+                            <NewReview wineId={state.currentWineId} />
                         </>
                     )
                     : <PleaseSelectMessage/>}

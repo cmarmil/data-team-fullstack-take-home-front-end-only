@@ -15,5 +15,11 @@ module.exports = {
         historyApiFallback: true,
         hot: true,
         port: 8080,
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        },
+        proxy: {
+            '/*': 'http://localhost:3000/'
+          },
     },
 };

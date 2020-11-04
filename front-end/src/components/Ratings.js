@@ -7,9 +7,16 @@ import {
 import Typography from '@material-ui/core/Typography';
 
 
-const useStyles = makeStyles({
-    root: {},
-});
+const useStyles = makeStyles(theme => ({
+    root: {
+        width: '33%',
+        margin: ".5em",
+        height: 'fit-content',
+        [theme.breakpoints.down('sm')]: {
+            width: '100%',
+          },
+    },
+}));
 
 
 export default function RatingCards({ wineId }) {

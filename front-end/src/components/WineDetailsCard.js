@@ -7,9 +7,14 @@ import {
 import Typography from '@material-ui/core/Typography';
 import productImage from '../assets/wines/folk-and-fable.png';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     root: {
-        maxWidth: 345,
+        width: '33%',
+        margin: ".5em",
+        height: 'fit-content',
+        [theme.breakpoints.down('sm')]: {
+            width: '100%',
+          },
     },
     box: {
         position: 'relative',
@@ -26,7 +31,7 @@ const useStyles = makeStyles({
     cardSubText: {
       fontSize: '1.2rem'  
     },
-});
+}));
 
 
 export default function WineDetailsCard({ wineId }) {

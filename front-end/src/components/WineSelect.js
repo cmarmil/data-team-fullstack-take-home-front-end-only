@@ -1,25 +1,22 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
 import { Select, Box, MenuItem } from '@material-ui/core';
 
-export default function WineSelect() {
+export default function WineSelect({ selectWine, currentWine }) {
     const [state, setState] = React.useState({
-        selectedWine: 'None',
         wines: [],
     });
 
-    const handleChange = (event) => {
-        setState({
-            ...state,
-            selectedWine: event.target.value,
-        });
+    WineSelect.propTypes = {
+        selectWine: PropTypes.func.isRequired,
+        currentWine: PropTypes.string.isRequired,
     };
 
     const fetchWines = () => {
         fetch('http://localhost:3000/wines/')
             .then((response) => response.json())
             .then((data) => setState({
-                ...state,
                 wines: data,
             }));
     };
@@ -29,11 +26,11 @@ export default function WineSelect() {
     }, []);
 
     return (
-        <Box textAlign="center" bgcolor="primary.main">
+        <Box textAlign="center" bgcolor="primary.main" padding=".5rem">
             <FormControl>
                 <Select
-                    value={state.selectedWine}
-                    onChange={handleChange}
+                    value={currentWine}
+                    onChange={selectWine}
                     inputProps={{ 'aria-label': 'Select Wine' }}
                 >
                     <MenuItem value="None">

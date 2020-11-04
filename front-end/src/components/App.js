@@ -1,6 +1,7 @@
 import React from 'react';
 import WineSelect from './WineSelect';
 import WineDetailsCard from './WineDetailsCard';
+import Ratings from './Ratings';
 import PleaseSelectMessage from './PleaseSelectMessage';
 import styles from './App.scss';
 
@@ -24,10 +25,11 @@ const App = () => {
                 currentWine={state.currentWine}
             />
             <div className={styles.resultsContainer}>
-                {state.currentWine != 'None'
+                {state.currentWine !== 'None'
                     ? (
                         <>
                             <WineDetailsCard wineId={state.currentWineId} />
+                            <Ratings wineId={state.currentWineId} />
                         </>
                     )
                     : <PleaseSelectMessage/>}

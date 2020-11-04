@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-    Card, CardActionArea, CardContent, Box,
+    Card, CardContent, Box,
 } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import productImage from '../assets/wines/folk-and-fable.png';
@@ -54,7 +54,6 @@ export default function WineDetailsCard({ wineId }) {
 
     return (
         <Card className={classes.root}>
-            <CardActionArea>
                 <Box className={classes.box}>
                     <img className={classes.image} src={productImage} alt="Wine Bottle" />
                 </Box>
@@ -75,7 +74,6 @@ export default function WineDetailsCard({ wineId }) {
                         {state.wineInfo.description}
                     </Typography>
                 </CardContent>
-            </CardActionArea>
         </Card>
     );
 }

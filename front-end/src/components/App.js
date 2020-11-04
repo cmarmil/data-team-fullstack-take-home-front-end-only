@@ -1,24 +1,28 @@
 import React from 'react';
-import productImage from '../assets/wines/folk-and-fable.png';
 import WineSelect from './WineSelect';
+import WineDetailsCard from './WineDetailsCard';
 import styles from './App.scss';
 
 const App = () => {
     const [state, setState] = React.useState({
-        selectedWine: 'None',
+        currentWine: 'None',
+        currentWineId: null,
     });
+
+    function setCurrentWine(event) {
+        setState({
+            currentWine: event.target.value,
+            currentWineId: event.nativeEvent.target.getAttribute('data-id'),
+        })
+    }
 
     return (
         <div className={styles.container}>
             <WineSelect
-                selectWine={(event) => setState({ selectedWine: event.target.value })}
-                currentWine={state.selectedWine}
+                selectWine={(event) => setCurrentWine(event)}
+                currentWine={state.currentWine}
             />
-            <h1>Folk and Fable 2016 Red Blend</h1>
-            <img
-                alt="product"
-                src={productImage}
-            />
+            <WineDetailsCard wineId={state.currentWineId} />
         </div>
     );
 };

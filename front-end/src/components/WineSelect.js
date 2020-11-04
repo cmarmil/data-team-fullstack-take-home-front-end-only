@@ -4,14 +4,15 @@ import FormControl from '@material-ui/core/FormControl';
 import { Select, Box, MenuItem } from '@material-ui/core';
 
 export default function WineSelect({ selectWine, currentWine }) {
-    const [state, setState] = React.useState({
-        wines: [],
-    });
 
     WineSelect.propTypes = {
         selectWine: PropTypes.func.isRequired,
         currentWine: PropTypes.string.isRequired,
     };
+
+    const [state, setState] = React.useState({
+        wines: [],
+    });
 
     const fetchWines = () => {
         fetch('http://localhost:3000/wines/')
@@ -37,7 +38,7 @@ export default function WineSelect({ selectWine, currentWine }) {
                         None
                     </MenuItem>
                     {state.wines.map((wine) => (
-                        <MenuItem key={wine.id} value={wine.name}>{wine.name}</MenuItem>
+                        <MenuItem key={wine.id} data-id={wine.id} value={wine.name}>{wine.name}</MenuItem>
                     ))}
                 </Select>
             </FormControl>

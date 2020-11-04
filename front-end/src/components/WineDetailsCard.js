@@ -49,6 +49,7 @@ export default function WineDetailsCard({ wineId }) {
     useEffect(() => {
         fetchWineDetails();
     });
+
     const classes = useStyles();
 
     return (

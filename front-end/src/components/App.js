@@ -1,6 +1,7 @@
 import React from 'react';
 import WineSelect from './WineSelect';
 import WineDetailsCard from './WineDetailsCard';
+import PleaseSelectMessage from './PleaseSelectMessage';
 import styles from './App.scss';
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
         setState({
             currentWine: event.target.value,
             currentWineId: event.nativeEvent.target.getAttribute('data-id'),
-        })
+        });
     }
 
     return (
@@ -22,7 +23,15 @@ const App = () => {
                 selectWine={(event) => setCurrentWine(event)}
                 currentWine={state.currentWine}
             />
-            <WineDetailsCard wineId={state.currentWineId} />
+            <div className={styles.resultsContainer}>
+                {state.currentWine != 'None'
+                    ? (
+                        <>
+                            <WineDetailsCard wineId={state.currentWineId} />
+                        </>
+                    )
+                    : <PleaseSelectMessage/>}
+            </div>
         </div>
     );
 };

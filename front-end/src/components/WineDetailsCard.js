@@ -39,20 +39,30 @@ export default function WineDetailsCard({ wineId }) {
         wineId: PropTypes.string.isRequired,
     };
 
-    const [state, setState] = React.useState({
-        wineInfo: {},
-    });
+    const [wineInfo, setWineInfo] = React.useState({});
+
+    const [tasteTags, setTags] = React.useState([]);
 
     const fetchWineDetails = () => {
         if (wineId) {
             fetch(`http://localhost:3000/wines/${wineId}/`)
                 .then((response) => response.json())
-                .then((data) => setState({ wineInfo: data }));
+                .then((data) => setWineInfo(data));
+        }
+    };
+
+    const fetchWineTags = () => {
+        if (wineId) {
+            fetch(`http://localhost:3000/wines/${wineId}/taste_tags/`)
+                .then((response) => response.json())
+                .then((data) => data.taste_tags.map((tagObj) => (tagObj.name)))
+                .then((data) => setTags(data));
         }
     };
 
     useEffect(() => {
         fetchWineDetails();
+        fetchWineTags();
     }, [wineId]);
 
     const classes = useStyles();
@@ -64,19 +74,24 @@ export default function WineDetailsCard({ wineId }) {
             </Box>
             <CardContent>
                 <Typography gutterBottom component="h2" className={classes.cardSubText}>
-                    {state.wineInfo.name}
+                    {wineInfo.name}
                 </Typography>
                 <Box display="flex" alignItems="center">
                     <Typography component="h3">
-                        {state.wineInfo.brand_name}
+                        {wineInfo.brand_name}
                     </Typography>
                     <Box m="0 .3rem">&#8226;</Box>
                     <Typography component="h3">
-                        {state.wineInfo.varietal_name}
+                        {wineInfo.varietal_name}
                     </Typography>
                 </Box>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    {state.wineInfo.description}
+                    {wineInfo.description}
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                    Tags:
+                    {' '}
+                    {tasteTags.join(', ')}
                 </Typography>
             </CardContent>
         </Card>

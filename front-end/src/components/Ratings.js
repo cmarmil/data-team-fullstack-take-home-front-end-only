@@ -7,14 +7,14 @@ import {
 import Typography from '@material-ui/core/Typography';
 
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         width: '33%',
-        margin: ".5em",
+        margin: '.5em',
         height: 'fit-content',
         [theme.breakpoints.down('sm')]: {
             width: '100%',
-          },
+        },
     },
 }));
 
@@ -37,11 +37,13 @@ export default function RatingCards({ wineId }) {
     };
 
     const calcAverageRating = () => {
+        let averageRating;
         const ratingNums = state.ratingInfo.map((rating) => rating.rating);
         if (ratingNums.length) {
             const average = ratingNums.reduce((a, b) => a + b) / ratingNums.length;
-            return average.toFixed(2);
+            averageRating = average.toFixed(2);
         }
+        return averageRating;
     };
 
     useEffect(() => {

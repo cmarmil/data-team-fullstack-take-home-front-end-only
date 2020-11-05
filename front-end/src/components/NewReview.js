@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         marginTop: '1em',
-    }
+    },
 }));
 
 
@@ -29,7 +29,7 @@ export default function NewReview({ wineId }) {
 
     const classes = useStyles();
 
-    const [value, setValue] = React.useState('Review');
+    const [textValue, setValue] = React.useState('Review');
 
     const [sliderValue, setSliderValue] = React.useState(3);
 
@@ -40,7 +40,7 @@ export default function NewReview({ wineId }) {
     const handleSubmit = () => {
         const newReview = {
             rating: sliderValue,
-            review: value,
+            review: textValue,
         };
         async function postData(url = '', data = newReview) {
             const response = await fetch(url, {
@@ -76,20 +76,28 @@ export default function NewReview({ wineId }) {
                     step={1}
                     min={1}
                     max={5}
-                    onChangeCommitted={(e, value) => setSliderValue(parseInt(value))}
+                    onChangeCommitted={(e, val) => setSliderValue(Number(val))}
                 />
                 <form autoComplete="off">
                     <TextField
-                        error={!value}
+                        error={!textValue}
                         fullWidth
                         variant="outlined"
                         id="standard-multiline-flexible"
                         multiline
                         onChange={handleChange}
-                        value={value}
-                        helperText={value ? '' : 'Review cannot be empty'}
+                        value={textValue}
+                        helperText={textValue ? '' : 'Review cannot be empty'}
                     />
-                    <Button className={classes.button} disabled={!value} variant="contained" color="primary" onClick={handleSubmit}>Submit Review</Button>
+                    <Button
+                        className={classes.button}
+                        disabled={!textValue}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleSubmit}
+                    >
+                        Submit Review
+                    </Button>
                 </form>
             </CardContent>
         </Card>

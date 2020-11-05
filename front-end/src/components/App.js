@@ -34,7 +34,7 @@ const App = () => {
                             <NewReview wineId={state.currentWineId} />
                         </>
                     )
-                    : <PleaseSelectMessage/>}
+                    : <PleaseSelectMessage />}
             </div>
         </div>
     );

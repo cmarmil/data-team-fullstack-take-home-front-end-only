@@ -4,7 +4,6 @@ import FormControl from '@material-ui/core/FormControl';
 import { Select, Box, MenuItem } from '@material-ui/core';
 
 export default function WineSelect({ selectWine, currentWine }) {
-
     WineSelect.propTypes = {
         selectWine: PropTypes.func.isRequired,
         currentWine: PropTypes.string.isRequired,

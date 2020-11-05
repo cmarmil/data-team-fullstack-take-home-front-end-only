@@ -80,18 +80,18 @@ export default function NewReview({ wineId }) {
                 />
                 <form autoComplete="off">
                     <TextField
-                        error={!textValue}
+                        error={!textValue.trim()}
                         fullWidth
                         variant="outlined"
                         id="standard-multiline-flexible"
                         multiline
                         onChange={handleChange}
                         value={textValue}
-                        helperText={textValue ? '' : 'Review cannot be empty'}
+                        helperText={textValue.trim() ? '' : 'Review cannot be empty'}
                     />
                     <Button
                         className={classes.button}
-                        disabled={!textValue}
+                        disabled={!textValue.trim()}
                         variant="contained"
                         color="primary"
                         onClick={handleSubmit}

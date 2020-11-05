@@ -11,6 +11,8 @@ const App = () => {
 
     const [wineId, setWineId] = React.useState('0');
 
+    const [newRating, setNewRating] = React.useState({});
+
     function setCurrentWine(event) {
         setWineName(event.target.value);
         setWineId(event.nativeEvent.target.getAttribute('data-id'));
@@ -27,8 +29,8 @@ const App = () => {
                     ? (
                         <>
                             <WineDetailsCard wineId={wineId} />
-                            <Ratings wineId={wineId} />
-                            <NewReview wineId={wineId} />
+                            <Ratings wineId={wineId} newRating={newRating} />
+                            <NewReview wineId={wineId} handleNewRating={(rating) => setNewRating(rating)} />
                         </>
                     )
                     : <PleaseSelectMessage />}

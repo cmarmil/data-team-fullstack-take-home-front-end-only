@@ -22,9 +22,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function NewReview({ wineId }) {
+export default function NewReview({ wineId, handleNewRating }) {
     NewReview.propTypes = {
         wineId: PropTypes.string.isRequired,
+        handleNewRating: PropTypes.func.isRequired,
     };
 
     const classes = useStyles();
@@ -58,6 +59,7 @@ export default function NewReview({ wineId }) {
             return response.json();
         }
         postData(`http://localhost:3000/wines/${wineId}/ratings/`);
+        handleNewRating(newReview);
     };
 
     return (

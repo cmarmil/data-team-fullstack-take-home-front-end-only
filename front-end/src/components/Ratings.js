@@ -19,9 +19,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function RatingCards({ wineId }) {
-    RatingCards.propTypes = {
+export default function Ratings({ wineId, newRating }) {
+    Ratings.propTypes = {
         wineId: PropTypes.string.isRequired,
+        newRating: PropTypes.oneOfType([PropTypes.object]).isRequired,
     };
 
     const [ratings, setRatings] = React.useState([]);
@@ -47,6 +48,16 @@ export default function RatingCards({ wineId }) {
     useEffect(() => {
         fetchWineRatings();
     }, [wineId]);
+
+    useEffect(() => {
+        // Add the rating id without fetching from api again.
+        if (ratings.length) {
+            const lastId = ratings[ratings.length - 1].id;
+            const newId = lastId + 1;
+            const newRatingObj = { ...newRating, id: newId };
+            setRatings([...ratings, newRatingObj]);
+        }
+    }, [newRating]);
 
     const classes = useStyles();
 

@@ -9,16 +9,12 @@ export default function WineSelect({ selectWine, currentWine }) {
         currentWine: PropTypes.string.isRequired,
     };
 
-    const [state, setState] = React.useState({
-        wines: [],
-    });
+    const [wines, setWines] = React.useState([]);
 
     const fetchWines = () => {
         fetch('http://localhost:3000/wines/')
             .then((response) => response.json())
-            .then((data) => setState({
-                wines: data,
-            }));
+            .then((data) => setWines(data));
     };
 
     useEffect(() => {
@@ -36,7 +32,7 @@ export default function WineSelect({ selectWine, currentWine }) {
                     <MenuItem value="None">
                         None
                     </MenuItem>
-                    {state.wines.map((wine) => (
+                    {wines.map((wine) => (
                         <MenuItem key={wine.id} data-id={wine.id} value={wine.name}>{wine.name}</MenuItem>
                     ))}
                 </Select>

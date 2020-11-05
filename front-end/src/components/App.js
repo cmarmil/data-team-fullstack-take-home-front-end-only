@@ -7,31 +7,28 @@ import PleaseSelectMessage from './PleaseSelectMessage';
 import styles from './App.scss';
 
 const App = () => {
-    const [state, setState] = React.useState({
-        currentWine: 'None',
-        currentWineId: null,
-    });
+    const [wineName, setWineName] = React.useState('None');
+
+    const [wineId, setWineId] = React.useState('0');
 
     function setCurrentWine(event) {
-        setState({
-            currentWine: event.target.value,
-            currentWineId: event.nativeEvent.target.getAttribute('data-id'),
-        });
+        setWineName(event.target.value);
+        setWineId(event.nativeEvent.target.getAttribute('data-id'));
     }
 
     return (
         <div className={styles.container}>
             <WineSelect
                 selectWine={(event) => setCurrentWine(event)}
-                currentWine={state.currentWine}
+                currentWine={wineName}
             />
             <div className={styles.resultsContainer}>
-                {state.currentWine !== 'None'
+                {wineName !== 'None'
                     ? (
                         <>
-                            <WineDetailsCard wineId={state.currentWineId} />
-                            <Ratings wineId={state.currentWineId} />
-                            <NewReview wineId={state.currentWineId} />
+                            <WineDetailsCard wineId={wineId} />
+                            <Ratings wineId={wineId} />
+                            <NewReview wineId={wineId} />
                         </>
                     )
                     : <PleaseSelectMessage />}

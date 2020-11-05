@@ -24,21 +24,19 @@ export default function RatingCards({ wineId }) {
         wineId: PropTypes.string.isRequired,
     };
 
-    const [state, setState] = React.useState({
-        ratingInfo: [],
-    });
+    const [ratings, setRatings] = React.useState([]);
 
     const fetchWineRatings = () => {
         if (wineId) {
             fetch(`http://localhost:3000/wines/${wineId}/ratings/`)
                 .then((response) => response.json())
-                .then((data) => setState({ ratingInfo: data.ratings }));
+                .then((data) => setRatings(data.ratings));
         }
     };
 
     const calcAverageRating = () => {
         let averageRating;
-        const ratingNums = state.ratingInfo.map((rating) => rating.rating);
+        const ratingNums = ratings.map((rating) => rating.rating);
         if (ratingNums.length) {
             const average = ratingNums.reduce((a, b) => a + b) / ratingNums.length;
             averageRating = average.toFixed(2);
@@ -64,7 +62,7 @@ export default function RatingCards({ wineId }) {
                     {calcAverageRating()}
                 </Typography>
                 <Box padding="1.5em">
-                    {state.ratingInfo.map((rating) => (
+                    {ratings.map((rating) => (
                         <Box key={rating.id} padding="1em 0" borderBottom="2px solid #bdbdbd">
                             <Typography gutterBottom component="h2">
                                 Rating:
